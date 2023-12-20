@@ -1,0 +1,46 @@
+{
+  "name": "backend",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "tsc && nodemon dist/app.js",
+    "server": "nodemon dist/app.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@types/cors": "^2.8.17",
+    "@types/crypto-js": "^4.2.1",
+    "@types/jsonwebtoken": "^9.0.5",
+    "@types/multer": "^1.4.11",
+    "@types/request": "^2.48.12",
+    "@types/sequelize": "^4.28.19",
+    "@types/socket.io": "^3.0.2",
+    "aws-sdk": "^2.1518.0",
+    "bcrypt": "^5.1.1",
+    "body-parser": "^1.20.2",
+    "cors": "^2.8.5",
+    "cron": "^3.1.6",
+    "crypto-ts": "^1.0.2",
+    "dotenv": "^16.3.1",
+    "express": "^4.18.2",
+    "jsonwebtoken": "^9.0.2",
+    "multer": "^1.4.5-lts.1",
+    "mysql2": "^3.6.5",
+    "nodemon": "^3.0.1",
+    "path": "^0.12.7",
+    "reflect-metadata": "^0.1.13",
+    "sequelize": "^6.35.1",
+    "sequelize-typescript": "^2.1.6",
+    "socket.io": "^4.7.2",
+    "typescript": "^5.3.2"
+  },
+  "devDependencies": {
+    "@types/bcrypt": "^5.0.2",
+    "@types/express": "^4.17.21",
+    "@types/node": "^20.10.3",
+    "@types/validator": "^13.11.7"
+  }
+}
