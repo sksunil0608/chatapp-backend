@@ -40,7 +40,7 @@ app.use(bodyParser.json());
 const httpServer = createServer(app);
 const io = new SocketIOServer(httpServer, {
   cors: {
-    origin: ['http://127.0.0.1:3000', 'http://localhost:3000'],
+    origin: ['https://vchat.vismrit.com'],
     methods: ["GET", "POST", "PUT", "DELETE"],
   }
 });
