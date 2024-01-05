@@ -16,7 +16,7 @@ const uploadtoS3 = (buffer, key, contentType) => {
         Bucket: BUCKET_NAME,
         Key: key,
         Body: buffer,
-        ContentType: contentType, // Correct property name
+        ContentType: contentType,
         ACL: 'public-read',
     };
     return new Promise((resolve, reject) => {
@@ -28,7 +28,6 @@ const uploadtoS3 = (buffer, key, contentType) => {
             else {
                 resolve(S3Response.Location);
             }
-            // Close the connection by destroying the underlying HTTP agent
         });
     });
 };

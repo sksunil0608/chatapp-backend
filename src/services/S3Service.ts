@@ -4,7 +4,7 @@ interface UploadParams {
     Bucket: string;
     Key: string;
     Body: any;
-    ContentType: any; // Correct property name
+    ContentType: any;
     ACL: string;
 }
 
@@ -22,7 +22,7 @@ const uploadtoS3 = (buffer: Buffer, key: string, contentType: any): Promise<stri
         Bucket: BUCKET_NAME,
         Key: key,
         Body: buffer,
-        ContentType: contentType, // Correct property name
+        ContentType: contentType,
         ACL: 'public-read',
     };
 
@@ -34,7 +34,7 @@ const uploadtoS3 = (buffer: Buffer, key: string, contentType: any): Promise<stri
             } else {
                 resolve(S3Response.Location);
             }
-            // Close the connection by destroying the underlying HTTP agent
+
         });
     });
 };

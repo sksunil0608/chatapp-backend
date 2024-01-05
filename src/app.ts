@@ -53,36 +53,36 @@ app.use(groupmessageRoutes)
 app.use(contactlistRoutes)
 app.use(groupmemberRoutes)
 // User associations
-User.hasMany(UserMessage, { foreignKey: 'sender_id', as: 'sentMessages' });
-User.hasMany(UserMessage, { foreignKey: 'receiver_id', as: 'receivedMessages' });
+User.hasMany(UserMessage, { foreignKey: 'sender_id', as: 'sentMessages', onDelete: 'CASCADE' });
+User.hasMany(UserMessage, { foreignKey: 'receiver_id', as: 'receivedMessages', onDelete: 'CASCADE' });
 User.hasMany(ContactList, { foreignKey: 'user_id', constraints: false });
 
 // Group associations
 User.belongsToMany(Group, { through: GroupMember, foreignKey: 'user_id' });
 Group.belongsToMany(User, { through: GroupMember, foreignKey: 'group_id' });
-Group.hasMany(GroupMember, { foreignKey: 'group_id' });
-Group.hasMany(GroupMessage, { foreignKey: 'group_id' });
+Group.hasMany(GroupMember, { foreignKey: 'group_id', onDelete: 'CASCADE' });
+Group.hasMany(GroupMessage, { foreignKey: 'group_id', onDelete: 'CASCADE' });
 
 // GroupMember associations
-GroupMember.belongsTo(Group, { foreignKey: 'group_id' });
-GroupMember.belongsTo(User, { foreignKey: 'user_id', as: 'User' });
-
+GroupMember.belongsTo(Group, { foreignKey: 'group_id', onDelete: 'CASCADE' });
+GroupMember.belongsTo(User, { foreignKey: 'user_id', as: 'User', onDelete: 'CASCADE' });
 
 // GroupMessage associations
-GroupMessage.belongsTo(Group, { foreignKey: 'group_id' });
-GroupMessage.belongsTo(User, { foreignKey: 'sender_id' });
+GroupMessage.belongsTo(Group, { foreignKey: 'group_id', onDelete: 'CASCADE' });
+GroupMessage.belongsTo(User, { foreignKey: 'sender_id', onDelete: 'CASCADE' });
 
 // ArchiveGroupMessage associations
-ArchiveGroupMessage.belongsTo(Group, { foreignKey: 'group_id' });
-ArchiveGroupMessage.belongsTo(User, { foreignKey: 'sender_id' });
+ArchiveGroupMessage.belongsTo(Group, { foreignKey: 'group_id', onDelete: 'CASCADE' });
+ArchiveGroupMessage.belongsTo(User, { foreignKey: 'sender_id', onDelete: 'CASCADE' });
 
 // UserMessage associations
-UserMessage.belongsTo(User, { foreignKey: 'sender_id' });
-UserMessage.belongsTo(Group, { foreignKey: 'group_id' });
+UserMessage.belongsTo(User, { foreignKey: 'sender_id', onDelete: 'CASCADE' });
+UserMessage.belongsTo(Group, { foreignKey: 'group_id', onDelete: 'CASCADE' });
 
-//Group File Attachments Associations
-GroupFileAttachment.belongsTo(User, { foreignKey: 'sender_id' })
-GroupFileAttachment.belongsTo(Group, { foreignKey: 'group_id' })
+// Group File Attachments Associations
+GroupFileAttachment.belongsTo(User, { foreignKey: 'sender_id', onDelete: 'CASCADE' });
+GroupFileAttachment.belongsTo(Group, { foreignKey: 'group_id', onDelete: 'CASCADE' });
+
 
 async function startServer() {
   try {

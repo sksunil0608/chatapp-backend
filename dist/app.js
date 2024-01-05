@@ -52,29 +52,29 @@ app.use(groupmessage_2.default);
 app.use(contactlist_2.default);
 app.use(groupmember_2.default);
 // User associations
-user_1.default.hasMany(usermessage_1.default, { foreignKey: 'sender_id', as: 'sentMessages' });
-user_1.default.hasMany(usermessage_1.default, { foreignKey: 'receiver_id', as: 'receivedMessages' });
+user_1.default.hasMany(usermessage_1.default, { foreignKey: 'sender_id', as: 'sentMessages', onDelete: 'CASCADE' });
+user_1.default.hasMany(usermessage_1.default, { foreignKey: 'receiver_id', as: 'receivedMessages', onDelete: 'CASCADE' });
 user_1.default.hasMany(contactlist_1.default, { foreignKey: 'user_id', constraints: false });
 // Group associations
 user_1.default.belongsToMany(group_1.default, { through: groupmember_1.default, foreignKey: 'user_id' });
 group_1.default.belongsToMany(user_1.default, { through: groupmember_1.default, foreignKey: 'group_id' });
-group_1.default.hasMany(groupmember_1.default, { foreignKey: 'group_id' });
-group_1.default.hasMany(groupmessage_1.default, { foreignKey: 'group_id' });
+group_1.default.hasMany(groupmember_1.default, { foreignKey: 'group_id', onDelete: 'CASCADE' });
+group_1.default.hasMany(groupmessage_1.default, { foreignKey: 'group_id', onDelete: 'CASCADE' });
 // GroupMember associations
-groupmember_1.default.belongsTo(group_1.default, { foreignKey: 'group_id' });
-groupmember_1.default.belongsTo(user_1.default, { foreignKey: 'user_id', as: 'User' });
+groupmember_1.default.belongsTo(group_1.default, { foreignKey: 'group_id', onDelete: 'CASCADE' });
+groupmember_1.default.belongsTo(user_1.default, { foreignKey: 'user_id', as: 'User', onDelete: 'CASCADE' });
 // GroupMessage associations
-groupmessage_1.default.belongsTo(group_1.default, { foreignKey: 'group_id' });
-groupmessage_1.default.belongsTo(user_1.default, { foreignKey: 'sender_id' });
+groupmessage_1.default.belongsTo(group_1.default, { foreignKey: 'group_id', onDelete: 'CASCADE' });
+groupmessage_1.default.belongsTo(user_1.default, { foreignKey: 'sender_id', onDelete: 'CASCADE' });
 // ArchiveGroupMessage associations
-archivegroupmessage_1.default.belongsTo(group_1.default, { foreignKey: 'group_id' });
-archivegroupmessage_1.default.belongsTo(user_1.default, { foreignKey: 'sender_id' });
+archivegroupmessage_1.default.belongsTo(group_1.default, { foreignKey: 'group_id', onDelete: 'CASCADE' });
+archivegroupmessage_1.default.belongsTo(user_1.default, { foreignKey: 'sender_id', onDelete: 'CASCADE' });
 // UserMessage associations
-usermessage_1.default.belongsTo(user_1.default, { foreignKey: 'sender_id' });
-usermessage_1.default.belongsTo(group_1.default, { foreignKey: 'group_id' });
-//Group File Attachments Associations
-groupfileattachment_1.default.belongsTo(user_1.default, { foreignKey: 'sender_id' });
-groupfileattachment_1.default.belongsTo(group_1.default, { foreignKey: 'group_id' });
+usermessage_1.default.belongsTo(user_1.default, { foreignKey: 'sender_id', onDelete: 'CASCADE' });
+usermessage_1.default.belongsTo(group_1.default, { foreignKey: 'group_id', onDelete: 'CASCADE' });
+// Group File Attachments Associations
+groupfileattachment_1.default.belongsTo(user_1.default, { foreignKey: 'sender_id', onDelete: 'CASCADE' });
+groupfileattachment_1.default.belongsTo(group_1.default, { foreignKey: 'group_id', onDelete: 'CASCADE' });
 async function startServer() {
     try {
         // Sync Database
